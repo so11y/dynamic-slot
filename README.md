@@ -28,3 +28,4 @@
 ```
 
 ### For more examples, see project example
+Online Example (pnpm run view)[https://stackblitz.com/github/so11y/dynamic-slot]
