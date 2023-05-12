@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "This Vue 3 directive enables you to inject and insert content into specific locations of a component, even if the component does not have defined slots. With this directive, you can dynamically insert plugins regardless of whether slots are present or not",
   "scripts": {
-    "build": "tsup"
+    "build": "tsup",
+    "view":"pnpm -F example run view"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
