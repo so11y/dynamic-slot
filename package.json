@@ -1,0 +1,33 @@
+{
+  "name": "dynamic-slot",
+  "version": "1.0.0",
+  "description": "This Vue 3 directive enables you to inject and insert content into specific locations of a component, even if the component does not have defined slots. With this directive, you can dynamically insert plugins regardless of whether slots are present or not",
+  "scripts": {
+    "build": "tsup"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "slot",
+    "vue",
+    "dynamic"
+  ],
+  "author": "so11y <https://github.com/so11y>",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "vue": "^3.3.1",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4"
+  }
+}
