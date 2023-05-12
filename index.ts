@@ -22,23 +22,23 @@ interface FindNode<T = VNode> {
   originInsetParentVnode: T;
 }
 function findPath(vnode: VNodeDyn, insetParentVnode: VNodeDyn) {
-  const stack: Array<VNodeDyn> = [vnode];
-  const path: Array<VNodeDyn> = [vnode];
-  let currentNode: VNodeDyn;
-  while (stack.length) {
-    currentNode = stack.pop()!;
-    if (currentNode === insetParentVnode) {
-      return path;
-    }
-    if (Array.isArray(currentNode.dynamicChildren)) {
-      for (let i = currentNode.dynamicChildren.length - 1; i >= 0; i--) {
-        const child = currentNode.dynamicChildren[i] as VNodeDyn;
-        stack.push(child);
-        path.push(child);
+  if (!insetParentVnode || vnode === insetParentVnode) return [vnode];
+  const walk = (vnode: VNodeDyn, path: Array<VNode> = []): Array<VNodeDyn> => {
+    if (!vnode) return [];
+    if (Array.isArray(vnode.dynamicChildren)) {
+      for (const node of vnode.dynamicChildren) {
+        if (node === insetParentVnode) {
+          return [...path, node] as any;
+        }
+        const maybeFind = walk(node as VNodeDyn, [...path, node]);
+        if (maybeFind?.length) {
+          return maybeFind;
+        }
       }
     }
-  }
-  return [];
+    return [];
+  };
+  return walk(vnode, [vnode]);
 }
 function clonePath(path: Array<VNodeDyn> = []): Array<VNodeDyn> {
   let lastVnode: Array<VNodeDyn> = [];
